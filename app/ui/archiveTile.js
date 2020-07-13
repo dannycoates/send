@@ -12,6 +12,7 @@ const {
   timeLeft
 } = require('../utils');
 const expiryOptions = require('./expiryOptions');
+const dowloadDialog = require('./downloadDialog');
 
 function expiryInfo(translate, archive) {
   const l10n = timeLeft(archive.expiresAt - Date.now());
@@ -536,7 +537,8 @@ module.exports.preview = function(state, emit) {
   function download(event) {
     event.preventDefault();
     event.target.disabled = true;
-    emit('download', archive);
+    state.modal = dowloadDialog();
+    emit('render');
   }
 };
 

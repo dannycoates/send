@@ -19,6 +19,9 @@ module.exports = function(state) {
           >${state.translate('sendYourFilesLink')}</a
         >
       </p>
+      <p class="">
+        <a href="/report" class="link-blue">${state.translate('reportFile')}</a>
+      </p>
     </div>
   `;
 };

@@ -1,5 +1,6 @@
 import FileSender from './fileSender';
 import FileReceiver from './fileReceiver';
+import { reportLink } from './api';
 import { copyToClipboard, delay, openLinksInNewTab, percent } from './utils';
 import * as metrics from './metrics';
 import { bytes, locale } from './utils';
@@ -304,6 +305,22 @@ export default function(state, emitter) {
       state.modal = null;
     }
     render();
+  });
+
+  emitter.on('report', async ({ reason }) => {
+    try {
+      const file = state.fileInfo;
+      if (!file) {
+        // TODO
+        emitter.emit('pushState', '/error');
+        return render();
+      }
+      await reportLink(file.id, file.secretKey, reason);
+      emitter.emit('pushState', '/');
+    } catch (e) {
+      console.error(e);
+      emitter.emit('pushState', '/error');
+    }
   });
 
   setInterval(() => {

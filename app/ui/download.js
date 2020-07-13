@@ -31,6 +31,15 @@ function downloading(state, emit) {
 }
 
 function preview(state, emit) {
+  if (state.fileInfo.flagged) {
+    return html`
+      <div
+        class="flex flex-col w-full max-w-md h-full mx-auto items-center justify-center"
+      >
+        <h1 class="text-xl font-bold">${state.translate('downloadFlagged')}</h1>
+      </div>
+    `;
+  }
   if (!state.capabilities.streamDownload && state.fileInfo.size > BIG_SIZE) {
     return noStreams(state, emit);
   }
