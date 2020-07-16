@@ -1,6 +1,5 @@
 # Firefox Send is a brand name and should not be localized.
 title = Firefox Send
-siteFeedback = Feedback
 importingFile = Importing…
 encryptingFile = Encrypting…
 decryptingFile = Decrypting…
@@ -109,6 +108,7 @@ legalDateStamp = Version 1.0, dated March 12, 2019
 # A short representation of a countdown timer containing the number of days, hours, and minutes remaining as digits, example "2d 11h 56m"
 expiresDaysHoursMinutes = { $days }d { $hours }h { $minutes }m
 addFilesButton = Select files to upload
+trustWarningMessage = Make sure you trust your recipient if sharing sensitive data.
 uploadButton = Upload
 # the first part of the string 'Drag and drop files or click to send up to 1GB'
 dragAndDropFiles = Drag and drop files
@@ -146,8 +146,12 @@ shareMessage = Download “{ $name }” with { -send-brand }: simple, safe file 
 trailheadPromo = There is a way to protect your privacy. Join Firefox.
 learnMore = Learn more.
 downloadFlagged = This link has been disabled for violating the terms of service
-downloadConfirmTitle = Be Careful
+downloadConfirmTitle = One more thing
 downloadConfirmDescription = Make sure you trust the person who sent you this file because we can't verify that it will not harm your device.
 downloadTrustCheckbox = I trust the person who sent this file
 reportFile = Report this file as suspicious
 reportButton = Report
+reportReasonMalware = These files contain malware or are part of a phishing attack.
+reportReasonPii = These files contain personally identifiable information about me.
+reportReasonAbuse = These files contain abusive photos or videos.
+reportReasonCopyright = These files violate a copyright I hold.

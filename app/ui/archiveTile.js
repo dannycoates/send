@@ -12,7 +12,6 @@ const {
   timeLeft
 } = require('../utils');
 const expiryOptions = require('./expiryOptions');
-const dowloadDialog = require('./downloadDialog');
 
 function expiryInfo(translate, archive) {
   const l10n = timeLeft(archive.expiresAt - Date.now());
@@ -483,6 +482,11 @@ module.exports.empty = function(state, emit) {
       >
         ${state.translate('addFilesButton')}
       </label>
+      <p
+        class="font-normal text-sm text-grey-50 dark:text-grey-40 my-6 mx-12 text-center max-w-sm leading-loose"
+      >
+        ${state.translate('trustWarningMessage')}
+      </p>
       ${upsell}
     </send-upload-area>
   `;
@@ -518,13 +522,25 @@ module.exports.preview = function(state, emit) {
       `;
   return html`
     <send-archive
-      class="flex flex-col max-h-full bg-white p-4 w-full md:w-128 dark:bg-grey-90"
+      class="flex flex-col max-h-full bg-white w-full dark:bg-grey-90"
     >
-      <div class="border rounded py-3 px-6 dark:border-grey-70">
+      <div class="border rounded py-3 px-4 dark:border-grey-70">
         ${archiveInfo(archive)} ${details}
+      </div>
+      <div class="checkbox inline-block mt-6 mx-auto">
+        <input
+          id="trust-download"
+          type="checkbox"
+          autocomplete="off"
+          onchange="${toggleDownloadEnabled}"
+        />
+        <label for="trust-download">
+          ${state.translate('downloadTrustCheckbox')}
+        </label>
       </div>
       <button
         id="download-btn"
+        disabled
         class="btn rounded-lg mt-4 w-full flex-shrink-0 focus:outline"
         title="${state.translate('downloadButtonLabel')}"
         onclick=${download}
@@ -534,11 +550,17 @@ module.exports.preview = function(state, emit) {
     </send-archive>
   `;
 
+  function toggleDownloadEnabled(event) {
+    event.stopPropagation();
+    const checked = event.target.checked;
+    const btn = document.getElementById('download-btn');
+    btn.disabled = !checked;
+  }
+
   function download(event) {
     event.preventDefault();
     event.target.disabled = true;
-    state.modal = dowloadDialog();
-    emit('render');
+    emit('download', archive);
   }
 };
 

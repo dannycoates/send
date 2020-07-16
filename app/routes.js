@@ -15,6 +15,7 @@ module.exports = function(app = choo({ hash: true })) {
   });
   app.route('/login', body(require('./ui/home')));
   app.route('/report', body(require('./ui/report')));
+  app.route('/report/submitted', body(require('./ui/report')));
   app.route('*', body(require('./ui/notFound')));
   return app;
 };
