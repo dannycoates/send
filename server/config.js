@@ -157,7 +157,7 @@ const conf = convict({
   },
   fxa_url: {
     format: 'url',
-    default: 'https://send-fxa.dev.lcip.org',
+    default: 'http://localhost:3030',
     env: 'FXA_URL'
   },
   fxa_client_id: {

@@ -441,7 +441,7 @@ export async function getConstants() {
 
 export async function reportLink(id, key, reason) {
   const response = await fetch(
-    getApiUrl(`/api/flag/${id}`),
+    getApiUrl(`/api/report/${id}`),
     post({ key, reason })
   );
 

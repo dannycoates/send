@@ -316,9 +316,13 @@ export default function(state, emitter) {
         return render();
       }
       await reportLink(file.id, file.secretKey, reason);
-      emitter.emit('pushState', '/');
-    } catch (e) {
-      console.error(e);
+      render();
+    } catch (err) {
+      console.error(err);
+      if (err.message === '404') {
+        state.fileInfo = { reported: true };
+        return render();
+      }
       emitter.emit('pushState', '/error');
     }
   });

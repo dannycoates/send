@@ -80,7 +80,7 @@ class DB {
   }
 
   async flag(id, key) {
-    this.redis.persist(id);
+    // this.redis.persist(id);
     this.redis.hmset(id, { flagged: 1, key });
     this.redis.sadd('flagged', id);
   }

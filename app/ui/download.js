@@ -1,5 +1,6 @@
 /* global downloadMetadata */
 const html = require('choo/html');
+const assets = require('../../common/assets');
 const archiveTile = require('./archiveTile');
 const modal = require('./modal');
 const noStreams = require('./noStreams');
@@ -48,7 +49,7 @@ function preview(state, emit) {
       class="w-full overflow-hidden md:flex md:flex-row items-stretch md:flex-1"
     >
       <div
-        class="px-2 w-full md:px-0 flex-half md:flex md:flex-col md:justify-center md:pr-8 pb-4"
+        class="px-2 w-full md:px-0 flex-half md:flex md:flex-col mt-12 md:pr-8 pb-4"
       >
         <h1 class="text-3xl font-bold mb-4 text-center md:text-left">
           ${state.translate('downloadTitle')}
@@ -59,10 +60,14 @@ function preview(state, emit) {
           ${state.translate('downloadDescription')}
         </p>
         <p
-          class="text-grey-80 leading-normal dark:text-grey-40 font-semibold text-center md:text-left"
+          class="text-grey-80 leading-normal dark:text-grey-40 font-semibold text-center md:mb-8 md:text-left"
         >
           ${state.translate('downloadConfirmDescription')}
         </p>
+        <img
+          class="hidden md:block dl-bg w-full"
+          src="${assets.get('intro.svg')}"
+        />
       </div>
       <div
         class="w-full flex-half flex-half md:flex md:flex-col md:justify-center"

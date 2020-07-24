@@ -24,7 +24,7 @@ module.exports = {
     const appState = await state(req);
     try {
       const { nonce, pwd, dead, flagged } = await storage.metadata(id);
-      if (dead) {
+      if (dead && !flagged) {
         return next();
       }
       res.set('WWW-Authenticate', `send-v1 ${nonce}`);

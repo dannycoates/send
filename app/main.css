@@ -166,6 +166,10 @@ footer li:hover {
   height: unset;
 }
 
+.dl-bg {
+  filter: grayscale(1) opacity(0.15);
+}
+
 .main {
   display: flex;
   position: relative;

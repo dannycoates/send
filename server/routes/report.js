@@ -1,5 +1,6 @@
 const storage = require('../storage');
 const Keychain = require('../keychain');
+const { statReportEvent } = require('../amplitude');
 
 module.exports = async function(req, res) {
   try {
@@ -16,6 +17,15 @@ module.exports = async function(req, res) {
       );
       if (metadata.manifest) {
         storage.flag(id, key);
+        statReportEvent({
+          id,
+          ip: req.ip,
+          owner: meta.owner,
+          reason: req.body.reason,
+          download_limit: meta.dlimit,
+          download_count: meta.dl,
+          agent: req.ua.browser.name || req.ua.ua.substring(0, 6)
+        });
         return res.sendStatus(200);
       }
       res.sendStatus(400);
