@@ -65,13 +65,16 @@ module.exports = function(state, emit) {
                   reportable =>
                     html`
                       <li class="mb-2 leading-normal">
-                        <label for="${reportable.toLowerCase()}" class="flex">
+                        <label
+                          for="${reportable.toLowerCase()}"
+                          class="flex items-center"
+                        >
                           <input
                             type="radio"
                             name="reason"
                             id="${reportable.toLowerCase()}"
                             value="${reportable.toLowerCase()}"
-                            class="mr-2 my-1"
+                            class="mr-2 my-2 w-4 h-4"
                           />
                           ${state.translate(`reportReason${reportable}`)}
                         </label>

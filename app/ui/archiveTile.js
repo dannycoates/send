@@ -535,7 +535,9 @@ module.exports.preview = function(state, emit) {
           onchange="${toggleDownloadEnabled}"
         />
         <label for="trust-download">
-          ${state.translate('downloadTrustCheckbox')}
+          ${single
+            ? state.translate('downloadTrustCheckbox')
+            : state.translate('downloadTrustCheckboxPlural')}
         </label>
       </div>
       <button
